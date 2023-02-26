@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,8 @@
   "homepage": "https://github.com/LeaPapadopoulos/myMovieApp-client#readme",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
