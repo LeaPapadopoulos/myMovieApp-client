@@ -3,3 +3,6 @@ node_modules
 .parcel-cache
 .DS_Store
 dist
+src/.DS_Store
+dist/index.b4b6dfad.js
+dist/index.b4b6dfad.js.map
