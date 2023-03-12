@@ -66,21 +66,21 @@ export const MainView = () => {
       {movies.map((movie) => (
         <MovieCard
           key={movie.id}
-          book={movie}
+          movie={movie}
           onBookClick={(newSelectedMovie) => {
             setSelectedMovie(newSelectedMovie);
           }}
         />
       ))}
+      <button
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
-  <button
-    onClick={() => {
-      setUser(null);
-      setToken(null);
-      localStorage.clear();
-    }}
-  >
-    Logout
-  </button>;
 };

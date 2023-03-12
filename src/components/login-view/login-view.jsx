@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-export const LoginView = (onLoggedIn) => {
+export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
@@ -13,13 +13,19 @@ export const LoginView = (onLoggedIn) => {
       Password: password,
     };
 
-    fetch("https://mymovieapp.herokuapp.com/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "https://mymovieapp.herokuapp.com/login?username=" +
+        username +
+        "&password=" +
+        password,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
