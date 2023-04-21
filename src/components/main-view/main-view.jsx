@@ -13,12 +13,7 @@ export const MainView = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
-    fetch("https://mymovieapp.herokuapp.com/movies", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch("https://mymovieapp.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((mov) => {
@@ -32,7 +27,7 @@ export const MainView = () => {
 
         setMovies(moviesFromApi);
       });
-  }, [token]);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -48,11 +43,10 @@ export const MainView = () => {
             path="/signup"
             element={
               <>
-                {!user ? (
+                {user ? (
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <p className="text-center">OR </p>
                     <SignupView />
                   </Col>
                 )}
@@ -63,7 +57,7 @@ export const MainView = () => {
             path="/login"
             element={
               <>
-                {!user ? (
+                {user ? (
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
