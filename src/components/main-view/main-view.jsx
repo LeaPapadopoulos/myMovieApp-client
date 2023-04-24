@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { MovieLike } from "../movie-like/movie-like";
+import { ProfileView } from "../profile-view/profile-view";
+import { ProfileEdit } from "../profile-edit/profile-edit";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
@@ -76,7 +79,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <div>The list is empty!</div>
                 ) : (
-                  <MovieView movies={movies} />
+                  <MovieView movies={movies} user={user} />
                 )}
               </>
             }
@@ -98,6 +101,36 @@ export const MainView = () => {
                       </Col>
                     ))}
                   </>
+                )}
+              </>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <div>The list is empty!</div>
+                ) : (
+                  <ProfileView user={user} movies={movies} />
+                )}
+              </>
+            }
+          />
+
+          <Route
+            path="/profile-edit"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <div>The list is empty!</div>
+                ) : (
+                  <ProfileEdit user={user} />
                 )}
               </>
             }
