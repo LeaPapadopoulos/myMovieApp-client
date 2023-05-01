@@ -29,8 +29,10 @@ export const ProfileView = ({ user, movies }) => {
   };
 
   let favoriteMovies = movies.filter((m) =>
-    user.FavoriteMovies.includes(m._id)
+    user.FavoriteMovies.includes(m.id)
   );
+  console.log(favoriteMovies);
+  console.log(movies);
 
   return (
     <div>
@@ -49,10 +51,6 @@ export const ProfileView = ({ user, movies }) => {
       <div>
         <span>Birthday: </span>
         <span>{user.Birthday}</span>
-      </div>
-      <div>
-        <span>FavoriteMovies: </span>
-        <span>{favoriteMovies}</span>
       </div>
       <Link to={`/profile-edit`}>
         <button className="back-button" style={{ cursor: "pointer" }}>

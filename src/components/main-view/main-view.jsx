@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { MovieLike } from "../movie-like/movie-like";
 import { ProfileView } from "../profile-view/profile-view";
 import { ProfileEdit } from "../profile-edit/profile-edit";
 import { LoginView } from "../login-view/login-view";

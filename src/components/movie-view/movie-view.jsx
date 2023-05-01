@@ -28,7 +28,6 @@ export const MovieView = ({ movies, user }) => {
     ).then((response) => {
       if (response.ok) {
         alert("Movie Added");
-        window.location.reload();
       } else {
         alert("Failed to add");
       }
