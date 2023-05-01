@@ -28,11 +28,7 @@ export const ProfileView = ({ user, movies }) => {
     });
   };
 
-  let favoriteMovies = movies.filter((m) =>
-    user.FavoriteMovies.includes(m.id)
-  );
-  console.log(favoriteMovies);
-  console.log(movies);
+  let favoriteMovies = movies.filter((m) => user.FavoriteMovies.includes(m.id));
 
   return (
     <div>
