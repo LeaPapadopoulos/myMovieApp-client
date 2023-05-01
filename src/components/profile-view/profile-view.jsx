@@ -48,16 +48,17 @@ export const ProfileView = ({ user, movies }) => {
         <span>Birthday: </span>
         <span>{user.Birthday}</span>
       </div>
-      <Link to={`/profile-edit`}>
-        <button className="back-button" style={{ cursor: "pointer" }}>
-          Edit
-        </button>
-      </Link>
-      <Form onSubmit={handleSubmit}>
-        <Button variant="primary" type="submit" className="my-2">
-          Delete Profile
-        </Button>
-      </Form>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Link to={`/profile-edit`}>
+          <Button variant="primary">Edit</Button>
+        </Link>
+        <Form onSubmit={handleSubmit}>
+          <Button variant="outline-dark" type="submit" className="my-2 mx-2">
+            Delete
+          </Button>
+        </Form>
+      </div>
+      <h5 class="card-title my-3">Favorite Movies</h5>
 
       {favoriteMovies.map((movie) => (
         <Col key={movie.id} md={3} className="pb-2">

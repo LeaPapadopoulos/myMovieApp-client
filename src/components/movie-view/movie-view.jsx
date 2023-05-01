@@ -47,16 +47,16 @@ export const MovieView = ({ movies, user }) => {
         <span>Director: </span>
         <span>{movie.director}</span>
       </div>
-      <Link to={`/`}>
-        <button className="back-button" style={{ cursor: "pointer" }}>
-          Back
-        </button>
-      </Link>
-      <Form onSubmit={handleSubmit}>
-        <Button variant="primary" type="submit" className="my-2">
-          Like
-        </Button>
-      </Form>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Form onSubmit={handleSubmit} >
+          <Button variant="primary" type="submit" className="my-2">
+            Like
+          </Button>
+        </Form>
+        <Link to={`/`}>
+          <Button variant="outline-dark" className="mx-2">Back</Button>
+        </Link>
+      </div>
     </div>
   );
 };
