@@ -58,11 +58,11 @@ export const ProfileView = ({ user, movies }) => {
           </Button>
         </Form>
       </div>
-      <h5 class="card-title my-3">Favorite Movies</h5>
+      <h5 className="card-title my-3">Favorite Movies</h5>
 
       {favoriteMovies.map((movie) => (
         <Col key={movie.id} md={3} className="pb-2">
-          <MovieCard movie={movie} />
+          <MovieCard movie={movie} user={user} />
         </Col>
       ))}
     </div>
