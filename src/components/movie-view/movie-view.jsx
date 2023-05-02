@@ -28,7 +28,6 @@ export const MovieView = ({ movies, user }) => {
     ).then((response) => {
       if (response.ok) {
         alert("Movie Added");
-        window.location.reload();
       } else {
         alert("Failed to add");
       }
@@ -48,16 +47,22 @@ export const MovieView = ({ movies, user }) => {
         <span>Director: </span>
         <span>{movie.director}</span>
       </div>
-      <Link to={`/`}>
-        <button className="back-button" style={{ cursor: "pointer" }}>
-          Back
-        </button>
-      </Link>
-      <Form onSubmit={handleSubmit}>
-        <Button variant="primary" type="submit" className="my-2">
-          Like
-        </Button>
-      </Form>
+      <div>
+        <span>Genre: </span>
+        <span>{movie.genre}</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Form onSubmit={handleSubmit}>
+          <Button variant="primary" type="submit" className="my-2">
+            Like
+          </Button>
+        </Form>
+        <Link to={`/`}>
+          <Button variant="outline-dark" className="mx-2">
+            Back
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -28,9 +28,7 @@ export const ProfileView = ({ user, movies }) => {
     });
   };
 
-  let favoriteMovies = movies.filter((m) =>
-    user.FavoriteMovies.includes(m._id)
-  );
+  let favoriteMovies = movies.filter((m) => user.FavoriteMovies.includes(m.id));
 
   return (
     <div>
@@ -50,24 +48,21 @@ export const ProfileView = ({ user, movies }) => {
         <span>Birthday: </span>
         <span>{user.Birthday}</span>
       </div>
-      <div>
-        <span>FavoriteMovies: </span>
-        <span>{favoriteMovies}</span>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Link to={`/profile-edit`}>
+          <Button variant="primary">Edit</Button>
+        </Link>
+        <Form onSubmit={handleSubmit}>
+          <Button variant="outline-dark" type="submit" className="my-2 mx-2">
+            Delete
+          </Button>
+        </Form>
       </div>
-      <Link to={`/profile-edit`}>
-        <button className="back-button" style={{ cursor: "pointer" }}>
-          Edit
-        </button>
-      </Link>
-      <Form onSubmit={handleSubmit}>
-        <Button variant="primary" type="submit" className="my-2">
-          Delete Profile
-        </Button>
-      </Form>
+      <h5 className="card-title my-3">Favorite Movies</h5>
 
       {favoriteMovies.map((movie) => (
         <Col key={movie.id} md={3} className="pb-2">
-          <MovieCard movie={movie} />
+          <MovieCard movie={movie} user={user} />
         </Col>
       ))}
     </div>

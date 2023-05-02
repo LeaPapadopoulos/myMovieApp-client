@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { MovieLike } from "../movie-like/movie-like";
+import { MovieFilter } from "../movie-filter/movie-filter";
 import { ProfileView } from "../profile-view/profile-view";
+import { GenreView } from "../genre-view/genre-view";
 import { ProfileEdit } from "../profile-edit/profile-edit";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
@@ -25,6 +26,7 @@ export const MainView = () => {
             title: mov.Title,
             //image: `https://covers.openlibrary.org/b/id/${mov.cover_i}-L.jpg`,
             director: mov.Director.Name,
+            genre: mov.Genre.Name,
           };
         });
 
@@ -40,7 +42,7 @@ export const MainView = () => {
           setUser(null);
         }}
       />
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center mt-2">
         <Routes>
           <Route
             path="/signup"
@@ -56,6 +58,7 @@ export const MainView = () => {
               </>
             }
           />
+
           <Route
             path="/login"
             element={
@@ -70,6 +73,7 @@ export const MainView = () => {
               </>
             }
           />
+
           <Route
             path="/movies/:movieId"
             element={
@@ -86,6 +90,20 @@ export const MainView = () => {
           />
 
           <Route
+            path="/movies/genre/:genre"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <div>The list is empty!</div>
+                ) : (
+                  <GenreView movies={movies} user={user} />
+                )}
+              </>
+            }
+          />
+          <Route
             path="/"
             element={
               <>
@@ -95,6 +113,8 @@ export const MainView = () => {
                   <div>The list is empty!</div>
                 ) : (
                   <>
+                    <MovieFilter movies={movies} genre={null} />
+
                     {movies.map((movie) => (
                       <Col key={movie.id} md={3} className="pb-2">
                         <MovieCard movie={movie} />

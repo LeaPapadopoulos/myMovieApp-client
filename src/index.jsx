@@ -9,7 +9,7 @@ import "./index.scss";
 // Main component (will eventually use all the others)
 const App = () => {
   return (
-    <Container className="py-2">
+    <Container>
       <MainView />
     </Container>
   );
