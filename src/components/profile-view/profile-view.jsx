@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, movies, setUser }) => {
+export const ProfileView = ({ user, movies, setUser, setToken }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -22,8 +22,8 @@ export const ProfileView = ({ user, movies, setUser }) => {
       if (response.ok) {
         alert("User deleted");
         setUser(null);
-        localStorage.clear;
-        window.location.reload();
+        setToken(null);
+        localStorage.clear();
       } else {
         alert("Delete failed");
       }

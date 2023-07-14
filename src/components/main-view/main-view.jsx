@@ -19,8 +19,16 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser);
 
+  const storedToken = localStorage.getItem("token")
+    ? localStorage.getItem("token")
+    : null;
+  const [token, setToken] = useState(storedToken);
+
   useEffect(() => {
-    fetch("https://mymovieapp.herokuapp.com/movies")
+    if (!token) return;
+    fetch("https://mymovieapp.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((mov) => {
@@ -35,7 +43,7 @@ export const MainView = () => {
 
         setMovies(moviesFromApi);
       });
-  }, []);
+  }, [token]);
 
   return (
     <BrowserRouter>
@@ -43,6 +51,8 @@ export const MainView = () => {
         user={user}
         onLoggedOut={() => {
           setUser(null);
+          setToken(null);
+          localStorage.clear();
         }}
       />
       <Row className="justify-content-md-center mt-2">
@@ -70,7 +80,12 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />{" "}
                   </Col>
                 )}
               </>
@@ -138,7 +153,12 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <div>The list is empty!</div>
                 ) : (
-                  <ProfileView user={user} movies={movies} setUser={setUser} />
+                  <ProfileView
+                    user={user}
+                    movies={movies}
+                    setUser={setUser}
+                    setToken={setToken}
+                  />
                 )}
               </>
             }
