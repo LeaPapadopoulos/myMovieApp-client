@@ -4,12 +4,13 @@ This is a React client application that allows users to access information about
 
 # App Demo Link
 
-A demo link to the app can be found [here](https://mymovieapp-client.herokuapp.com)
-*Note: demo link currently not working
+A demo link to the app can be found [here](https://mymovieapp-1.netlify.app/)
 
 # App Screenshots
 
-tba
+![Alt text](image.png)
+![Alt text](image-1.png)
+![Alt text](image-2.png)
 
 ## Installation and Setup
 
