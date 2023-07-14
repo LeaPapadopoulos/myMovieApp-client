@@ -13,8 +13,11 @@ import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
+  const storedUser = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(storedUser);
 
   useEffect(() => {
     fetch("https://mymovieapp.herokuapp.com/movies")
@@ -83,7 +86,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <div>The list is empty!</div>
                 ) : (
-                  <MovieView movies={movies} user={user} />
+                  <MovieView movies={movies} user={user} setUser={setUser} />
                 )}
               </>
             }
@@ -135,7 +138,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <div>The list is empty!</div>
                 ) : (
-                  <ProfileView user={user} movies={movies} />
+                  <ProfileView user={user} movies={movies} setUser={setUser} />
                 )}
               </>
             }
@@ -150,7 +153,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <div>The list is empty!</div>
                 ) : (
-                  <ProfileEdit user={user} />
+                  <ProfileEdit user={user} setUser={setUser} />
                 )}
               </>
             }

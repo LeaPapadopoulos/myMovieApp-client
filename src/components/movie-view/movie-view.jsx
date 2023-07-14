@@ -4,7 +4,7 @@ import "./movie-view.scss";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 
-export const MovieView = ({ movies, user }) => {
+export const MovieView = ({ movies, user, setUser }) => {
   const { movieId } = useParams();
 
   const movie = movies.find((m) => m.id === movieId);
@@ -27,6 +27,12 @@ export const MovieView = ({ movies, user }) => {
       }
     ).then((response) => {
       if (response.ok) {
+        if (!user.FavoriteMovies.includes(movie.id)) {
+          user.FavoriteMovies.push(movie.id);
+          setUser(user);
+          console.log(user.FavoriteMovies);
+          localStorage.setItem("user", JSON.stringify(user));
+        }
         alert("Movie Added");
       } else {
         alert("Failed to add");

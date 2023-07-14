@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, movies }) => {
+export const ProfileView = ({ user, movies, setUser }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -21,6 +21,8 @@ export const ProfileView = ({ user, movies }) => {
     }).then((response) => {
       if (response.ok) {
         alert("User deleted");
+        setUser(null);
+        localStorage.clear;
         window.location.reload();
       } else {
         alert("Delete failed");
@@ -35,10 +37,6 @@ export const ProfileView = ({ user, movies }) => {
       <div>
         <span>Username: </span>
         <span>{user.username}</span>
-      </div>
-      <div>
-        <span>Password: </span>
-        <span>{user.password}</span>
       </div>
       <div>
         <span>email: </span>
@@ -62,7 +60,7 @@ export const ProfileView = ({ user, movies }) => {
 
       {favoriteMovies.map((movie) => (
         <Col key={movie.id} md={3} className="pb-2">
-          <MovieCard movie={movie} user={user} />
+          <MovieCard movie={movie} user={user} setUser={setUser} />
         </Col>
       ))}
     </div>

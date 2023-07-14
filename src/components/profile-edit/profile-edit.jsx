@@ -4,7 +4,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export const ProfileEdit = ({ user }) => {
+export const ProfileEdit = ({ user, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ export const ProfileEdit = ({ user }) => {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday,
+      Birth: birthday,
     };
 
     fetch(`https://mymovieapp.herokuapp.com/users/${user.username}`, {
@@ -26,14 +26,14 @@ export const ProfileEdit = ({ user }) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((response) => {
-      if (response.ok) {
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        console.log(user);
+        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
         alert("User information updated");
-        window.location.reload();
-      } else {
-        alert("Update failed");
-      }
-    });
+      });
   };
 
   return (

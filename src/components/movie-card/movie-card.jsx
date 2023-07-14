@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-export const MovieCard = ({ movie, user }) => {
+export const MovieCard = ({ movie, user, setUser }) => {
   const location = useLocation();
 
   const handleSubmit = (event) => {
@@ -24,6 +24,13 @@ export const MovieCard = ({ movie, user }) => {
       }
     ).then((response) => {
       if (response.ok) {
+        user.FavoriteMovies = user.FavoriteMovies.filter((movieID) => {
+          return movieID !== movie.id;
+        });
+        setUser(user);
+        console.log(user.FavoriteMovies);
+        localStorage.setItem("user", JSON.stringify(user));
+        window.location.reload();
         alert("Movie Deleted");
       } else {
         alert("Failed to delete");
