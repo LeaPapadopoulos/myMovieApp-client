@@ -2,6 +2,15 @@
 
 This is a React client application that allows users to access information about movies, create a profile, and save data about their favorite movies.
 
+# App Demo Link
+
+A demo link to the app can be found [here](https://mymovieapp-client.herokuapp.com)
+*Note: demo link currently not working
+
+# App Screenshots
+
+tba
+
 ## Installation and Setup
 
 1. Clone the repository.
